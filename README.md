@@ -5,7 +5,8 @@ Carousely is a static, AI-ready LinkedIn carousel studio built with HTML, CSS an
 ## Features
 
 - Local deterministic content and hook generation; no API key required
-- 20 configured design systems and semantic slide roles
+- 20 premium design systems with differentiated ornaments and compositions
+- Six common canvas formats with an in-app size masterclass and safe object resizing
 - English LTR and Arabic RTL editing
 - Canonical project, slide and element data model
 - Direct text editing, pointer drag, resize, z-order, lock, duplicate and delete
