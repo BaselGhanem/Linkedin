@@ -1,0 +1,6 @@
+const KEYS={projects:`carousely.projects.v1`,brands:`carousely.brands.v1`,settings:`carousely.settings.v1`};
+const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};const write=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value));return true}catch(error){throw new Error(`Local storage is full or unavailable.`)}};
+export const projectRepository={all:()=>read(KEYS.projects,[]),get:id=>read(KEYS.projects,[]).find(x=>x.id===id),save(project){const all=this.all();const i=all.findIndex(x=>x.id===project.id);project.updatedAt=new Date().toISOString();i<0?all.unshift(project):all.splice(i,1,project);write(KEYS.projects,all);return project},delete(id){write(KEYS.projects,this.all().filter(x=>x.id!==id))}};
+export const brandKitRepository={all:()=>read(KEYS.brands,[]),save(kit){const all=this.all(),i=all.findIndex(x=>x.id===kit.id);i<0?all.push(kit):all.splice(i,1,kit);write(KEYS.brands,all);return kit},delete(id){write(KEYS.brands,this.all().filter(x=>x.id!==id))}};
+export const settingsRepository={get:()=>read(KEYS.settings,{defaultLanguage:`en`,defaultDirection:`ltr`,defaultTemplate:`minimalProfessional`,defaultBrandKit:null,autoSave:true,showPageNumbers:true,showProgress:true}),save:value=>write(KEYS.settings,value)};
+
