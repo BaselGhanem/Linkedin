@@ -17,6 +17,7 @@ Carousely is a static, AI-ready LinkedIn carousel studio built with HTML, CSS an
 - Deterministic quality scoring with actionable slide navigation
 - PNG/ZIP, PDF and native-object PPTX export
 - Responsive dashboard and drawer-based mobile editor panels
+- Automatic canvas fitting and touch-friendly layouts for 360, 390, 430, 768, 1024 px and desktop viewports
 - Undo/redo history and debounced autosave
 
 ## Technology
