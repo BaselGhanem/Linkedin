@@ -2,15 +2,15 @@ import { templates } from '../templates/templates.js';
 
 const structureDetails = {
   Educational: [`Explain clearly`, `Hook → context → insights → takeaway`], Listicle: [`Make it saveable`, `Hook → numbered ideas → CTA`],
-  `Step-by-Step`: [`Teach a process`, `Hook → steps → recap`], Storytelling: [`Create a narrative`, `Tension → moment → lesson`],
-  `Problem → Solution`: [`Resolve a pain point`, `Problem → cause → solution`], `Before → After`: [`Show a contrast`, `Before → shift → after`],
-  `Myth vs Fact`: [`Correct a belief`, `Myth → fact → action`], Framework: [`Give a reusable model`, `Hook → framework → application`],
-  `Case Study`: [`Prove with evidence`, `Challenge → action → result`], Statistics: [`Lead with evidence`, `Number → meaning → action`],
-  `Personal Story`: [`Make it human`, `Moment → insight → invitation`], `Thought Leadership`: [`Share a point of view`, `Claim → reasoning → CTA`],
+  [`Step-by-Step`]: [`Teach a process`, `Hook → steps → recap`], Storytelling: [`Create a narrative`, `Tension → moment → lesson`],
+  [`Problem → Solution`]: [`Resolve a pain point`, `Problem → cause → solution`], [`Before → After`]: [`Show a contrast`, `Before → shift → after`],
+  [`Myth vs Fact`]: [`Correct a belief`, `Myth → fact → action`], Framework: [`Give a reusable model`, `Hook → framework → application`],
+  [`Case Study`]: [`Prove with evidence`, `Challenge → action → result`], Statistics: [`Lead with evidence`, `Number → meaning → action`],
+  [`Personal Story`]: [`Make it human`, `Moment → insight → invitation`], [`Thought Leadership`]: [`Share a point of view`, `Claim → reasoning → CTA`],
   Checklist: [`Make it actionable`, `Hook → checklist → save`], Tutorial: [`Teach an outcome`, `Outcome → steps → result`],
-  Mistakes: [`Prevent costly errors`, `Hook → mistakes → fix`], `Best Practices`: [`Set a higher bar`, `Hook → practices → next move`],
-  Comparison: [`Help a decision`, `Option A ↔ Option B → choice`], `Lessons Learned`: [`Share earned insight`, `Context → lessons → reflection`],
-  `Contrarian Opinion`: [`Challenge the default`, `Belief → counterpoint → proof`], `Data Story`: [`Turn data into a decision`, `Signal → interpretation → action`]
+  Mistakes: [`Prevent costly errors`, `Hook → mistakes → fix`], [`Best Practices`]: [`Set a higher bar`, `Hook → practices → next move`],
+  Comparison: [`Help a decision`, `Option A ↔ Option B → choice`], [`Lessons Learned`]: [`Share earned insight`, `Context → lessons → reflection`],
+  [`Contrarian Opinion`]: [`Challenge the default`, `Belief → counterpoint → proof`], [`Data Story`]: [`Turn data into a decision`, `Signal → interpretation → action`]
 };
 
 const paletteNames = [`Default`, `Dark`, `Monochrome`];
