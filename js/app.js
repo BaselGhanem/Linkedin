@@ -10,7 +10,7 @@ import { uid, clone, debounce, escapeHtml, textOnly, clamp } from './utils.js';
 import { initSizeExperience, resizeProject } from './ui/sizes.js';
 import { initResponsiveExperience } from './ui/responsive.js';
 import { initEditorExperience } from './ui/editor-experience.js';
-import { initPremiumLoader, premiumLoader } from './ui/premium-loader.js';
+import { initPremiumLoader, premiumLoader } from './ui/premium-loader.js?v=20260810-loaderfix';
 import { initLocalization } from './ui/localization.js';
 import { initWizardExperience } from './ui/wizard-experience.js';
 const root=document.querySelector(`#app`);let project=null,currentSlideIndex=0,selectedId=null,zoom=.46,history=[],future=[],clipboard=null,editorEventsBound=false,wizard={step:1,topic:``,content:``,language:`en`,structure:`Educational`,tone:`Professional`,audience:`Data Analysts`,objective:`Educate`,count:7,hook:``,hooks:[],templateId:`minimalProfessional`,brandKitId:null};
