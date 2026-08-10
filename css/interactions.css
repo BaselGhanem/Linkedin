@@ -1,0 +1,14 @@
+/* Explicit interaction states prevent the generic .btn:hover rule from
+   overriding primary, danger and ghost button contrast. */
+.btn{transition:background-color .16s ease,border-color .16s ease,color .16s ease,box-shadow .16s ease,transform .16s ease}
+.btn:hover:not(:disabled){background:#f7fafa;border-color:#a9babd;color:var(--text)}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.btn-primary,.btn-primary:visited{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn-primary:hover:not(:disabled){background:#077f7f;border-color:#077f7f;color:#fff;box-shadow:0 6px 16px rgba(9,127,127,.2)}
+.btn-primary:active:not(:disabled){background:#066c6c;border-color:#066c6c;color:#fff}
+.btn-ghost:hover:not(:disabled){background:rgba(9,153,153,.08);border-color:transparent;color:#067b7b}
+.btn-danger:hover:not(:disabled){background:#fff1f2;border-color:#e7b9bd;color:#a72f39}
+.btn:disabled,.btn:disabled:hover{cursor:not-allowed;opacity:.52;box-shadow:none;transform:none}
+.btn-primary:disabled,.btn-primary:disabled:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn:focus-visible,.choice:focus-visible,.size-card:focus-visible{outline:3px solid rgba(9,153,153,.3);outline-offset:2px}
+@media(hover:none){.btn:hover:not(:disabled){transform:none}.btn-primary:hover:not(:disabled){background:var(--primary);border-color:var(--primary)}}
