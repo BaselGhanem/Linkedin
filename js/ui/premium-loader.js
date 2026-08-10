@@ -29,9 +29,12 @@ export const premiumLoader = {
     loader.querySelector(`[data-loader-message]`).textContent = labels[language()][kind] || labels[language()].loading;
     loader.classList.add(`is-visible`);
     clearTimeout(window.__carouselyLoaderTimer);
+    clearTimeout(window.__carouselyLoaderFailsafe);
+    window.__carouselyLoaderFailsafe = setTimeout(() => loader.classList.remove(`is-visible`), 1400);
   },
   hide(delay = 180) {
     clearTimeout(window.__carouselyLoaderTimer);
+    clearTimeout(window.__carouselyLoaderFailsafe);
     window.__carouselyLoaderTimer = setTimeout(() => build().classList.remove(`is-visible`), delay);
   }
 };
@@ -41,7 +44,7 @@ export function initPremiumLoader() {
   document.addEventListener(`click`, event => {
     const button = event.target.closest(`button, a`);
     if (!button || button.disabled) return;
-    if (button.matches(`[data-action="demo-en"], [data-action="demo-ar"], [data-action="next"], [data-action="regenerate"], [data-export], [data-action="export"]`)) premiumLoader.show(messageFor(button));
+    if (button.matches(`[data-action="next"], [data-action="regenerate"], [data-export], [data-action="export"]`)) premiumLoader.show(messageFor(button));
   });
   window.addEventListener(`error`, () => premiumLoader.hide(0));
   window.addEventListener(`unhandledrejection`, () => premiumLoader.hide(0));
