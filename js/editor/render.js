@@ -45,8 +45,8 @@ const layoutSlideText = (project, slide, template) => {
   const isHook = slide.role === `hook`;
   const isData = [`statistic`, `chart`, `comparison`, `framework`].includes(slide.role);
   const direction = project.direction === `rtl` ? `right` : `left`;
-  const headingFont = project.language === `ar` ? `Cairo` : template.typography.heading;
-  const bodyFont = project.language === `ar` ? `Cairo` : template.typography.body;
+  const headingFont = project.language === `ar` ? `Almarai` : template.typography.heading;
+  const bodyFont = project.language === `ar` ? `Almarai` : template.typography.body;
   if (title) {
     title.style.fontFamily = headingFont;
     title.style.direction = project.direction;
@@ -62,7 +62,23 @@ const layoutSlideText = (project, slide, template) => {
     footer.style.direction = project.direction;
     footer.style.align = direction;
   }
-  if (isHook) {
+  if (template.style === `bold`) {
+    setTextBox(title, { x: 96, y: isHook ? 225 : 175, width: 888, height: isHook ? 420 : 290 }, 88, 42, project.theme.text, 800);
+    if (title) title.style.align = `center`;
+    setTextBox(body, { x: 120, y: isHook ? 760 : 560, width: 840, height: 260 }, 36, 24, project.theme.text, 500);
+    if (body) body.style.align = `center`;
+  } else if (template.style === `editorial`) {
+    setTextBox(title, { x: 100, y: isHook ? 270 : 190, width: 680, height: isHook ? 390 : 260 }, 72, 38, project.theme.text, 800);
+    setTextBox(body, { x: 100, y: isHook ? 760 : 520, width: 650, height: 370 }, 38, 24, project.theme.text, 400);
+  } else if (template.style === `split`) {
+    setTextBox(title, { x: 105, y: 190, width: 760, height: isHook ? 360 : 250 }, 68, 38, project.theme.text, 800);
+    setTextBox(body, { x: 420, y: isHook ? 650 : 500, width: 510, height: 350 }, 36, 24, project.theme.text, 500);
+  } else if (template.style === `quote`) {
+    setTextBox(title, { x: 135, y: 300, width: 810, height: 400 }, 72, 40, project.theme.text, 800);
+    if (title) title.style.align = `center`;
+    setTextBox(body, { x: 160, y: 780, width: 760, height: 190 }, 30, 22, project.theme.muted, 600);
+    if (body) body.style.align = `center`;
+  } else if (isHook) {
     setTextBox(title, { x: 86, y: 220, width: 900, height: 390 }, 76, 44, project.theme.text, 800);
     setTextBox(body, { x: 86, y: 700, width: 820, height: 110 }, 32, 24, project.theme.muted, 600);
   } else if (isData) {
@@ -77,8 +93,10 @@ const layoutSlideText = (project, slide, template) => {
 
 export function applyTemplate(project, templateId) {
   const template = templates[templateId] || templates.minimalProfessional;
+  const paletteId = localStorage.getItem(`carousely.templatePalette`) || `Default`;
+  const palette = template.palettes[paletteId] || template.palettes.Default;
   project.templateId = templateId;
-  project.theme = { ...template.palettes.Default, ...project.theme, primary: template.palettes.Default.primary, background: template.palettes.Default.background, text: template.palettes.Default.text };
+  project.theme = { ...palette };
   project.slides.forEach(slide => {
     slide.layout = template.layouts[slide.role] || `content`;
     slide.background.color = project.theme.background;
@@ -111,9 +129,14 @@ export function slideMarkup(project, slide, { selectedId = null, editable = fals
     slide.layoutVersion = 2;
   }
   const format = slideFormats[project.format] || slideFormats.linkedin;
-  const elements = slide.elements.filter(element => element.visible).sort((left, right) => left.zIndex - right.zIndex).map(element => elementMarkup(element, element.id === selectedId, editable)).join(``);
+  const withMasterFooter = slide.elements.map(element => {
+    const isFooter = element.type === `text` && (element.y > format.height * .86 || element.content.text === `Carousely`);
+    return isFooter && project.master.footer ? { ...element, content: { ...element.content, text: project.master.footer } } : element;
+  });
+  const elements = withMasterFooter.filter(element => element.visible).sort((left, right) => left.zIndex - right.zIndex).map(element => elementMarkup(element, element.id === selectedId, editable)).join(``);
   const position = project.slides.indexOf(slide);
-  const progress = project.master.showProgress ? `<div style="position:absolute;left:0;bottom:0;height:10px;width:${(position + 1) / project.slides.length * 100}%;background:${project.theme.primary};z-index:30"></div>` : ``;
-  const page = project.master.showPageNumbers ? `<div style="position:absolute;right:68px;bottom:44px;font:700 22px Inter;color:${project.theme.muted};z-index:30">${String(position + 1).padStart(2, `0`)}</div>` : ``;
+  const hiddenByMaster = (slide.role === `hook` && project.master.hideOnCover) || (slide.role === `cta` && project.master.hideOnCTA);
+  const progress = project.master.showProgress && !hiddenByMaster ? `<div style="position:absolute;left:0;bottom:0;height:10px;width:${(position + 1) / project.slides.length * 100}%;background:${project.theme.primary};z-index:30"></div>` : ``;
+  const page = project.master.showPageNumbers && !hiddenByMaster ? `<div style="position:absolute;right:68px;bottom:44px;font:700 22px ${project.language === `ar` ? `Almarai` : `Inter`};color:${project.theme.muted};z-index:30">${String(position + 1).padStart(2, `0`)}</div>` : ``;
   return `<div id="${id}" class="${className}" data-slide-id="${slide.id}" style="width:${format.width}px;height:${format.height}px;background:${slide.background.color || project.theme.background};direction:${project.direction}">${decorative(template, project.theme)}${elements}${page}${progress}${includeControls && selectedId ? `<span class="resize-handle nw" data-handle="nw"></span><span class="resize-handle se" data-handle="se"></span>` : ``}</div>`;
 }
