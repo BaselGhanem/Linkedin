@@ -9,6 +9,7 @@ import { exportService } from './exports/exporters.js';
 import { uid, clone, debounce, escapeHtml, textOnly, clamp } from './utils.js';
 import { initSizeExperience, resizeProject } from './ui/sizes.js';
 import { initResponsiveExperience } from './ui/responsive.js';
+import { initEditorExperience } from './ui/editor-experience.js';
 const root=document.querySelector(`#app`);let project=null,currentSlideIndex=0,selectedId=null,zoom=.46,history=[],future=[],clipboard=null,wizard={step:1,topic:``,content:``,language:`en`,structure:`Educational`,tone:`Professional`,audience:`Data Analysts`,objective:`Educate`,count:7,hook:``,hooks:[],templateId:`minimalProfessional`,brandKitId:null};
 const icon=(name)=>({home:`⌂`,plus:`＋`,undo:`↶`,redo:`↷`,preview:`▶`,score:`◎`,export:`⇩`,slides:`▤`,settings:`⚙`,brand:`◆`,menu:`☰`,close:`×`}[name]||name);
 const toast=message=>{const el=document.createElement(`div`);el.className=`toast`;el.textContent=message;document.querySelector(`#toast-root`).append(el);setTimeout(()=>el.remove(),3200)};
@@ -53,4 +54,5 @@ function settings(){const s=settingsRepository.get();root.innerHTML=shell(`<main
 initSizeExperience({getProject:()=>project,onResize:formatId=>{if(!project)return;snapshot();resizeProject(project,formatId);saveDebounced();editor()}});
 document.addEventListener(`carousely:autozoom`,event=>{if(!project||!document.querySelector(`#slide-canvas`))return;zoom=event.detail;renderEditor(false)});
 initResponsiveExperience();
+initEditorExperience();
 renderRoute();
