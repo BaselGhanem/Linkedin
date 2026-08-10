@@ -11,4 +11,4 @@ export const structures=[`Educational`,`Listicle`,`Step-by-Step`,`Storytelling`,
 export const tones=[`Professional`,`Educational`,`Bold`,`Executive`,`Storytelling`,`Friendly`,`Analytical`,`Conversational`,`Thought Leadership`,`Provocative`];
 export const audiences=[`Data Analysts`,`Executives`,`Sales Professionals`,`Marketers`,`HR Professionals`,`Business Owners`,`Developers`,`Students`,`General LinkedIn Audience`];
 export const objectives=[`Educate`,`Build Authority`,`Generate Engagement`,`Generate Leads`,`Promote Service`,`Promote Course`,`Share Case Study`,`Tell a Story`,`Explain Concept`];
-export const fonts={en:[`Inter`,`Manrope`,`DM Sans`,`IBM Plex Sans`,`Plus Jakarta Sans`],ar:[`Cairo`,`Tajawal`,`IBM Plex Sans Arabic`,`Noto Sans Arabic`,`Noto Kufi Arabic`]};
+export const fonts={en:[`Inter`,`Manrope`,`DM Sans`,`IBM Plex Sans`,`Plus Jakarta Sans`],ar:[`Almarai`,`Cairo`,`Tajawal`,`IBM Plex Sans Arabic`,`Noto Sans Arabic`]};
