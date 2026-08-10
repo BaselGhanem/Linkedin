@@ -23,7 +23,7 @@ export function initResponsiveExperience(){
     })
   };
   const observer=new MutationObserver(update);
-  observer.observe(document.querySelector(`#app`),{childList:true,subtree:true});
+  observer.observe(document.querySelector(`#app`),{childList:true});
   window.addEventListener(`resize`,update,{passive:true});
   window.addEventListener(`orientationchange`,update,{passive:true});
   document.addEventListener(`click`,event=>{
@@ -33,4 +33,3 @@ export function initResponsiveExperience(){
   });
   update();
 }
-
